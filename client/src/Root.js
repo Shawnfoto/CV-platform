@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
 import thunk from "redux-thunk";
 import jwt_decode from "jwt-decode";
 
@@ -12,11 +13,7 @@ export default ({ children, initialState = {} }) => {
   const store = createStore(
     reducers,
     initialState,
-    compose(
-      applyMiddleware(thunk),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    composeWithDevTools(applyMiddleware(thunk))
   );
 
   // Check for token
