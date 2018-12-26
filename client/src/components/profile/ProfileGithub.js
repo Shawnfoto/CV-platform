@@ -38,13 +38,11 @@ class ProfileGithub extends Component {
       .then(data => {
         if (this.refs.myRef) {
           this.setState({ repos: data });
-          // if(data.message) {
-
-          // }
 
           if (_.isEmpty(data)) {
             this.setState({ repoEmpty: !this.state.repoEmpty });
           }
+          
         }
       })
       .catch(err => console.log(err));

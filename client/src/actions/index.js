@@ -11,14 +11,6 @@ import {
   CLEAR_CURRENT_PROFILE
 } from "./types";
 
-function handleResponse(response) {
-  if (response.status === 401) {
-    window.location("/login");
-    return logoutUser();
-  }
-  return response;
-}
-
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
@@ -72,7 +64,10 @@ export const logoutUser = history => dispatch => {
   setAuthToken(false);
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
-  history.push("/login");
+ 
+  history ? history.push("/login") : (window.location.href = "/login");
+  // history.push("/login");
+  // window.location.href = "/login";
 };
 
 // Get current profile
@@ -80,7 +75,7 @@ export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get("/api/profile")
-    .then(handleResponse)
+
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -118,7 +113,6 @@ export const getProfileByHandle = handle => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/profile", profileData)
-    .then(handleResponse)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -132,7 +126,6 @@ export const createProfile = (profileData, history) => dispatch => {
 export const addExperience = (expData, history) => dispatch => {
   axios
     .post("/api/profile/experience", expData)
-    .then(handleResponse)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -146,7 +139,6 @@ export const addExperience = (expData, history) => dispatch => {
 export const addEducation = (eduData, history) => dispatch => {
   axios
     .post("/api/profile/education", eduData)
-    .then(handleResponse)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
