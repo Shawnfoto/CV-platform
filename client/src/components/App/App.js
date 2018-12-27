@@ -1,14 +1,8 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import jwt_decode from "jwt-decode";
 // css
 import "../../App.css";
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import setAuthToken from "../../utils/setAuthToken";
-import reducers from "../../reducers";
-import { setCurrentUser, logoutUser, clearCurrentProfile } from "../../actions";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import Landing from "../../components/layout/Landing";
@@ -28,18 +22,12 @@ import Post from "../../components/post/Post";
 
 import NotFound from "../../components/not-found/NotFound";
 
-// const store = createStore(
-//   reducers,
-//   {},
-//   compose(
-//     applyMiddleware(thunk),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-//   )
-// );
+
 
 class App extends Component {
   render() {
     return (
+      // <div>123</div>
       <BrowserRouter>
         <div className="App">
           <Navbar />
