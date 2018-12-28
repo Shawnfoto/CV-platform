@@ -9,6 +9,7 @@ import Landing from "../../components/layout/Landing";
 import Login from "../../components/auth/Login";
 import Register from "../../components/auth/Register";
 
+// private
 import Dashboard from "../../components/dashboard/Dashboard";
 import PrivateRoute from "../../components/common/PrivateRoute";
 import CreateProfile from "../../components/create-profile/CreateProfile";
@@ -37,7 +38,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/profiles" component={Profiles} />
             <Route exact path="/profile/:handle" component={Profile} />
-
+            <Route exact path="/not-found" component={NotFound} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
@@ -75,7 +76,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/post/:id" component={Post} />
             </Switch>
-            <Route exact path="/not-found" component={NotFound} />
+            
           </div>
           <Footer />
         </div>
