@@ -42,6 +42,7 @@ class EditProfile extends Component {
 
   // loading props 2 time, so input 2time
   componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps)
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
